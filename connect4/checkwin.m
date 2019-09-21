@@ -1,0 +1,94 @@
+function winStatus = checkwin(hBoard, vBoard, board)
+%checkwin Summary of this function goes here
+% checks to see if there is a win or draw for connect4.m
+% Detailed explanation goes here
+% checks the horizontal, vertical, and diagonal possibilities of Board to
+% see if there is a win or draw
+% hBoard is the row vector
+% vBoard is the column vector
+% board is the entire board
+
+
+% initialize winStatus to 0
+winStatus = 0; 
+
+
+%Check horizontal
+
+% if winStatus is equal to 0
+if winStatus == 0
+% check to see if there are 4 of the same values in a row that are all not
+% equal to 0
+% checks the four combinations, as you can check the values [1 - 4] [2 - 5]
+% [3 - 6] and [4 - 7]
+for i = 1:4 0
+   if hBoard(i) == hBoard(i+1) && hBoard(i) == hBoard(i+2) && hBoard(i) == hBoard(i+3) && hBoard(i) ~= 0 % if 4 values are equal to each other (in a row) in the vector and are not equal to 0
+        winStatus = 1; % set winStatus to 1
+        break; % stop loop immediately
+   end
+end
+end
+
+% check vertically
+
+if winStatus == 0
+% check to see if there are 4 of the same values in a column vector that are all not
+% equal to 0
+% checks the four combinations, as you can check the row values [6 - 3] [5 - 2]
+% [4 - 1] 
+for i = length(vBoard):-1:length(vBoard) - 2
+   if vBoard(i) == vBoard(i-1) && vBoard(i) == vBoard(i-2) && vBoard(i) == vBoard(i-3) && vBoard(i) ~= 0 % if 4 values are equal to each other (in a row) in the column vector and are not equal to 0
+        winStatus = 1; % set winStatus to 1
+        break; % stop loop immediately
+   end
+end
+end
+
+% check diagonally (left to right)
+
+if winStatus == 0
+% check every where on the board where there is a possibility of having 4 chips diagonally
+for i = 1:3
+    for j = 1:4
+        if board(i,j) == board(i+1,j+1) && board(i,j) == board(i+2,j+2) && board(i,j) == board(i+3,j+3) && board(i,j) ~= 0 % check for 4 of the same values going diagonally that are not equal to 0
+            winStatus = 1; % set winStatus to 1
+        end
+    end
+end
+end
+
+% check diagonally (right to left)
+if winStatus == 0
+% check every where on the board where there is a possibility of having 4 chips diagonally
+for i = 1:3
+    for j = 7:-1:4
+        if board(i,j) == board(i+1,j-1) && board(i,j) == board(i+2,j-2) && board(i,j) == board(i+3,j-3) && board(i,j) ~= 0 % check for 4 of the same values going diagonally that are not equal to 0
+            winStatus = 1; % set winStatus to 0;
+        end
+    end
+end
+end
+
+
+% check for draw
+if winStatus == 0
+winStatus = 2; % set winStatus to 2;
+% check the entire board
+for i = 1:6
+    for j = 1:7
+        if board(i,j) == 0 % if there is a 0 anywhere
+            winStatus = 0; % set winStatus to 0
+        end
+    end
+end
+end
+end
+
+            
+
+
+
+
+
+   
+   
